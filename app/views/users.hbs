@@ -1,0 +1,39 @@
+<h1>List of Products</h1>
+
+{{#if users}}
+<ul class="users_list">
+<div style="display: flex;">
+  {{#each users}}
+<div class="card" style="width: 18rem; margin: 50px;">
+  <div class="card-body">
+   <img src="{{this.avatar}}" class="card-img-top" style="width: 200px; height: 200px;" alt="Product_Image">   
+    <h5 class="card-title">{{this.username}}</h5>
+    <p class="card-text">{{this.password}}</p>
+    <a href="/adduser/{{this.id}}" class="btn btn-warning">Update</a>
+        <a href="#" class=" delete btn btn-danger" data-id="{{this.id}}">Delete</a>
+  </div>
+</div>
+  {{/each}}
+</div>
+</ul>
+{{else}}
+<h1>No data show</h1>
+{{/if}}
+
+<script>
+  $('.delete').on('click', function () {
+    let id = $(this).data('id');
+
+    fetch(`/deleteuser/${id}`,
+      {
+        method: "DELETE"
+      }
+    ).then((data) => {
+      if (data.status == 200) {
+        $(this).parent().remove();
+      }
+    })
+
+    console.log(id);
+  })
+</script>

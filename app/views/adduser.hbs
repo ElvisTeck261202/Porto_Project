@@ -1,0 +1,26 @@
+<h1 >
+    {{#if users }}
+    Update Product Screen
+
+    {{else}}
+    Add new Product screen
+    {{/if}}
+</h1>
+
+<form class="row justify-content-center" action="/adduser/{{#if users}} {{users.id}} {{/if}}" method="post">
+
+    <div>
+        <label for="username">Name of the product</label>
+        <input type="text" name="username"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"  value="{{#if users}} {{users.username}} {{/if}}">
+    </div>
+    <div>
+        <label for="password">Description</label>
+        <input type="text" name="password"  class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{#if users}} {{users.password}} {{/if}}">
+    </div>
+    <div>
+        <label for="avatar">Photo</label>
+        <input type="text" name="avatar" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="{{#if users}} {{users.avatar}} {{/if}}">
+    </div>
+
+    <input type="submit" style="margin: 25px;" value="{{#if users}}Update Product{{else}}Add Product{{/if}}" />
+</form>
